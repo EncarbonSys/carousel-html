@@ -1,7 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LinkedIn OAuth Redirect</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #f0f4f8;
+      text-align: center;
+    }
+    h1 { color: #0077B5; }
+    p { font-size: 18px; color: #333; }
+    code { background: #e0e0e0; padding: 5px 10px; border-radius: 5px; font-size: 16px; }
+  </style>
+</head>
 <body>
-<h1>LinkedIn Auth Redirect</h1>
-<p>Check the URL above for <strong>code=XXXX</strong> and copy it manually.</p>
+  <h1>LinkedIn OAuth Redirect</h1>
+  <p>If you see <code>code=XXXX</code> in the URL above, copy it below:</p>
+  <p id="authCode" style="font-weight:bold; color:#0077B5;"></p>
+
+  <script>
+    // Grab the 'code' query param from URL
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    if (code) {
+      document.getElementById('authCode').textContent = code;
+    } else {
+      document.getElementById('authCode').textContent = 'No code found. Make sure you authorized the app.';
+    }
+  </script>
 </body>
 </html>
